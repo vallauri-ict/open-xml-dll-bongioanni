@@ -46,7 +46,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClsOpenXmlUtilities.cs" />
+    <Compile Include="Excel.cs" />
+    <Compile Include="Word.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

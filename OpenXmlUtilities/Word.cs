@@ -12,7 +12,7 @@ using PIC = DocumentFormat.OpenXml.Drawing.Pictures;
 
 namespace OpenXmlUtilities
 {
-    public class ClsOpenXmlUtilities {
+    public class Word {
         public static void InsertPicture(WordprocessingDocument wordprocessingDocument, string fileName)
         {
             MainDocumentPart mainPart = wordprocessingDocument.MainDocumentPart;

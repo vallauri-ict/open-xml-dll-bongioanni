@@ -9,10 +9,8 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using OpenXmlUtilities;
 using Color = DocumentFormat.OpenXml.Wordprocessing.Color;
 
-namespace OpenXmlPlayground
-{
-    public partial class FormMain : Form
-    {
+namespace OpenXmlPlayground {
+    public partial class FormMain : Form {
         public FormMain()
         {
             InitializeComponent();
@@ -35,12 +33,12 @@ namespace OpenXmlPlayground
                     Body body = mainPart.Document.AppendChild(new Body());
 
                     // Define the styles
-                    ClsOpenXmlUtilities.AddStyle(mainPart, "MyHeading1", "Titolone", "Verdana", 30, "0000FF", false, true, true);
-                    ClsOpenXmlUtilities.AddStyle(mainPart, "MyTypescript", "Macchina da scrivere", "Courier New", 10, "333333", true, false, false);
+                    Word.AddStyle(mainPart, "MyHeading1", "Titolone", "Verdana", 30, "0000FF", false, true, true);
+                    Word.AddStyle(mainPart, "MyTypescript", "Macchina da scrivere", "Courier New", 10, "333333", true, false, false);
 
                     // Add MyHeading1 styled text
-                    Paragraph headingPar = ClsOpenXmlUtilities.CreateParagraphWithStyle("MyHeading1", JustificationValues.Center);
-                    ClsOpenXmlUtilities.AddTextToParagraph(headingPar, "Titolo con stile applicato");
+                    Paragraph headingPar = Word.CreateParagraphWithStyle("MyHeading1", JustificationValues.Center);
+                    Word.AddTextToParagraph(headingPar, "Titolo con stile applicato");
                     body.AppendChild(headingPar);
 
                     // Add simple text
@@ -50,9 +48,9 @@ namespace OpenXmlPlayground
                     run.AppendChild(new Text(msg));
 
                     // Add MyTypescript styled text
-                   
-                    Paragraph typescriptParagraph = ClsOpenXmlUtilities.CreateParagraphWithStyle("MyTypescript", JustificationValues.Left);
-                    ClsOpenXmlUtilities.AddTextToParagraph(typescriptParagraph, "È universalmente riconosciuto che un lettore che osserva il layout di una pagina viene distratto dal contenuto testuale se questo è leggibile. Lo scopo dell’utilizzo del Lorem Ipsum è che offre una normale distribuzione delle lettere (al contrario di quanto avviene se si utilizzano brevi frasi ripetute, ad esempio “testo qui”), apparendo come un normale blocco di testo leggibile. Molti software di impaginazione e di web design utilizzano Lorem Ipsum come testo modello. Molte versioni del testo sono state prodotte negli anni, a volte casualmente, a volte di proposito (ad esempio inserendo passaggi ironici).");
+
+                    Paragraph typescriptParagraph = Word.CreateParagraphWithStyle("MyTypescript", JustificationValues.Left);
+                    Word.AddTextToParagraph(typescriptParagraph, "È universalmente riconosciuto che un lettore che osserva il layout di una pagina viene distratto dal contenuto testuale se questo è leggibile. Lo scopo dell’utilizzo del Lorem Ipsum è che offre una normale distribuzione delle lettere (al contrario di quanto avviene se si utilizzano brevi frasi ripetute, ad esempio “testo qui”), apparendo come un normale blocco di testo leggibile. Molti software di impaginazione e di web design utilizzano Lorem Ipsum come testo modello. Molte versioni del testo sono state prodotte negli anni, a volte casualmente, a volte di proposito (ad esempio inserendo passaggi ironici).");
                     body.AppendChild(typescriptParagraph);
 
                     // Append a paragraph with styles
@@ -66,36 +64,36 @@ namespace OpenXmlPlayground
                         c[i] = new string[5];
                         for (int j = 0; j < c[i].Length; j++)
                         {
-                            c[i][j] =i+"-"+j;
+                            c[i][j] = i + "-" + j;
                         }
                     }
-                    body.Append(ClsOpenXmlUtilities.CreateTable(c, ClsOpenXmlUtilities.GetTableProperties("#000000", BorderValues.Thick, "5000")));
+                    body.Append(Word.CreateTable(c, Word.GetTableProperties("#000000", BorderValues.Thick, "5000")));
 
                     // Append bullet list
                     string[] texts = { "First element", "Second Element", "Third Element" };
-                    ClsOpenXmlUtilities.CreateBulletNumberingPart(mainPart);
+                    Word.CreateBulletNumberingPart(mainPart);
                     List<Paragraph> bulletList = new List<Paragraph>();
-                    ClsOpenXmlUtilities.CreateBulletOrNumberedList(100, 200, bulletList, texts.Length, texts);
+                    Word.CreateBulletOrNumberedList(100, 200, bulletList, texts.Length, texts);
                     foreach (Paragraph paragraph in bulletList)
                         body.Append(paragraph);
 
                     // Append numbered list
                     List<Paragraph> numberedList = new List<Paragraph>();
-                    ClsOpenXmlUtilities.CreateBulletOrNumberedList(100, 240, numberedList, texts.Length, texts, false);
+                    Word.CreateBulletOrNumberedList(100, 240, numberedList, texts.Length, texts, false);
                     foreach (Paragraph paragraph in numberedList)
                     {
                         body.Append(paragraph);
                     }
 
                     // Append image
-                    ClsOpenXmlUtilities.InsertPicture(doc, "panorama.jpg") ;
+                    Word.InsertPicture(doc, "panorama.jpg");
                 }
                 MessageBox.Show("Il documento è pronto!");
                 Process.Start(filepath);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Problemi col documento. Se è aperto da un altro programma, chiudilo e riprova... \n"+ex.Message);
+                MessageBox.Show("Problemi col documento. Se è aperto da un altro programma, chiudilo e riprova... \n" + ex.Message);
             }
         }
 
@@ -183,6 +181,50 @@ namespace OpenXmlPlayground
 
             // return the new paragraph
             return p;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string filepath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Output.xlsx");
+            try
+            {
+                List<TestModel> tmList = new List<TestModel>();
+                TestModel tm = new TestModel();
+                tm.TestId = 1;
+                tm.TestName = "Test1";
+                tm.TestDesc = "Tested 1 time";
+                tm.TestDate = DateTime.Now.Date;
+                tmList.Add(tm);
+
+                TestModel tm1 = new TestModel();
+                tm1.TestId = 2;
+                tm1.TestName = "Test2";
+                tm1.TestDesc = "Tested 2 times";
+                tm1.TestDate = DateTime.Now.AddDays(-1);
+                tmList.Add(tm1);
+
+                TestModel tm2 = new TestModel();
+                tm2.TestId = 3;
+                tm2.TestName = "Test3";
+                tm2.TestDesc = "Tested 3 times";
+                tm2.TestDate = DateTime.Now.AddDays(-2);
+                tmList.Add(tm2);
+
+                TestModel tm3 = new TestModel();
+                tm3.TestId = 4;
+                tm3.TestName = "Test4";
+                tm3.TestDesc = "Tested 4 times";
+                tm3.TestDate = DateTime.Now.AddDays(-3);
+                tmList.Add(tm);
+
+                Excel.CreateExcelFile(tmList, filepath);
+                MessageBox.Show("Il documento è pronto!");
+                Process.Start(filepath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Problemi col documento. Se è aperto da un altro programma, chiudilo e riprova... \n" + ex.Message);
+            }
         }
     }
 }
