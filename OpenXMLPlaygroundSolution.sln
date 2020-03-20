@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenXmlPlayground", "OpenXmlPlayground\OpenXmlPlayground.csproj", "{84296085-67E9-411E-918F-C21AA8A3BCBE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenXmlUtilities", "OpenXmlUtilities\OpenXmlUtilities.csproj", "{FEE02C85-6A72-4E0C-9C13-E7FD94A4BC40}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84296085-67E9-411E-918F-C21AA8A3BCBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84296085-67E9-411E-918F-C21AA8A3BCBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84296085-67E9-411E-918F-C21AA8A3BCBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84296085-67E9-411E-918F-C21AA8A3BCBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEE02C85-6A72-4E0C-9C13-E7FD94A4BC40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEE02C85-6A72-4E0C-9C13-E7FD94A4BC40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEE02C85-6A72-4E0C-9C13-E7FD94A4BC40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEE02C85-6A72-4E0C-9C13-E7FD94A4BC40}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9B5EFF7F-431E-4CED-807E-DDEC80884455}
+	EndGlobalSection
+EndGlobal
