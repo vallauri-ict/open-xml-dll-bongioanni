@@ -16,10 +16,10 @@ using Color = DocumentFormat.OpenXml.Wordprocessing.Color;
 ## Word.cs
 Permette di creare un testo formattato e con stili personalizzati, inserire immagini nel documento, creare tabelle e elenchi puntati tramite metodi statici tra cui:
 ```c#
-public static void InsertPicture(WordprocessingDocument wordprocessingDocument, string fileName)
-public static Paragraph CreateParagraphWithStyle(string styleId, JustificationValues justification)
-public static void CreateBulletNumberingPart(MainDocumentPart mainPart, string bulletChar = "-")
-public static Table CreateTable(string[][] contenuto, TableProperties tableProperties)
+public static void InsertPicture(WordprocessingDocument wordprocessingDocument, string fileName);
+public static Paragraph CreateParagraphWithStyle(string styleId, JustificationValues justification);
+public static void CreateBulletNumberingPart(MainDocumentPart mainPart, string bulletChar = "-");
+public static Table CreateTable(string[][] contenuto, TableProperties tableProperties);
 ```
 Questa classe è più macchinosa e per creare un documento bisogna leggere bene i parametri dei metodi e ci potrebbe essere l'eventualità di dover ritoccare alcuni metodi per adattarla alla soluzione
 
