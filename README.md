@@ -21,7 +21,13 @@ public static Paragraph CreateParagraphWithStyle(string styleId, JustificationVa
 public static void CreateBulletNumberingPart(MainDocumentPart mainPart, string bulletChar = "-");
 public static Table CreateTable(string[][] contenuto, TableProperties tableProperties);
 ```
-Questa classe è più macchinosa e per creare un documento bisogna leggere bene i parametri dei metodi e ci potrebbe essere l'eventualità di dover ritoccare alcuni metodi per adattarla alla soluzione
+Questa classe è più macchinosa e per creare un documento bisogna leggere bene i parametri dei metodi e ci potrebbe essere l'eventualità di dover ritoccare alcuni metodi per adattarla alla soluzione.
+
+Sono stati aggiunti di recente 2 metodi:
+- CreateWordFile: ritorna MainPart di un file word e gli viene aggiunta un' intestazione
+- CreateTable: crea un semplice tabella
+Questi metodi servono a semplificare la creazione di semplici documenti. 
+
 
 ## Excel.cs
 Permette la facile creazione di uno spreadsheet tramite un solo metodo:
