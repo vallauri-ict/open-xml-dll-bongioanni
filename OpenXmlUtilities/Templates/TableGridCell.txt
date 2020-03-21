@@ -1,0 +1,1 @@
+﻿<w:gridCol xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" w:w="{{width}}"/>

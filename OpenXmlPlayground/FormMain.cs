@@ -226,5 +226,31 @@ namespace OpenXmlPlayground {
                 MessageBox.Show("Problemi col documento. Se è aperto da un altro programma, chiudilo e riprova... \n" + ex.Message);
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainDocumentPart mainPart = Word.CreateWordFile("Prova", Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Prova.docx");
+                string[][] c = new string[4][];
+                for (int i = 0; i < c.Length; i++)
+                {
+                    c[i] = new string[5];
+                    for (int j = 0; j < c[i].Length; j++)
+                    {
+                        c[i][j] = i + "-" + j;
+                    }
+                }
+                //NON AGGIUNGE LA TABELLA
+                mainPart.Document.GetFirstChild<Body>().AppendChild(Word.CreateTable(c));
+                MessageBox.Show(mainPart.Document.InnerXml);
+                MessageBox.Show("Il documento è pronto!");
+                Process.Start(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Prova.docx"));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Problemi col documento. Se è aperto da un altro programma, chiudilo e riprova... \n" + ex.Message);
+            }
+        }
     }
 }
