@@ -10,6 +10,7 @@ Per utilizzare la DLL ci sarà bisogno dell'aggiunta del seguente codice:
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+using OpenXmlUtilities;
 using Color = DocumentFormat.OpenXml.Wordprocessing.Color;
 ```
 
