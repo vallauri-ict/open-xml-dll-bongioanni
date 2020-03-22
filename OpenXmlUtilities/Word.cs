@@ -32,20 +32,18 @@ namespace OpenXmlUtilities {
 
         public static WordprocessingDocument DOC { get; set; }
 
-        public static MainDocumentPart CreateWordFile(string title,string path,string fileName)
+        public static WordprocessingDocument CreateWordFile(string title,string path,string fileName)
         {
-            using (WordprocessingDocument doc = WordprocessingDocument.Create(Path.Combine(path,fileName), DocumentFormat.OpenXml.WordprocessingDocumentType.Document))
-            {
-                // Add a main document part. 
-                MainDocumentPart mainPart = doc.AddMainDocumentPart();
+            WordprocessingDocument doc = WordprocessingDocument.Create(Path.Combine(path, fileName), DocumentFormat.OpenXml.WordprocessingDocumentType.Document);
+            // Add a main document part. 
+            MainDocumentPart mainPart = doc.AddMainDocumentPart();
 
-                // Create the document structure and add some text.
-                mainPart.Document = new Document();
-                Body body = mainPart.Document.AppendChild(new Body());
-                string xml = File.ReadAllText(@".\Templates\Header.txt").Replace("{{headerText}}", title);
-                body.InnerXml += xml;
-                return mainPart;
-            }
+            // Create the document structure and add some text.
+            mainPart.Document = new Document();
+            Body body = mainPart.Document.AppendChild(new Body());
+            string xml = File.ReadAllText(@".\Templates\Header.txt").Replace("{{headerText}}", title);
+            body.InnerXml += xml;
+            return doc;
         }
 
         public static Table CreateTable(string[][] content)
@@ -53,18 +51,11 @@ namespace OpenXmlUtilities {
             string xml;
             int n = content[0].Length;
             Table t = new Table();
-            t.InnerXml += File.ReadAllText(@".\Templates\TableProp.txt");
-
-            TableGrid tg = t.AppendChild(new TableGrid());
-            for (int i = 0; i < n; i++)
-            {
-                xml = File.ReadAllText(@".\Templates\TableGridCell.txt").Replace("{{width}}", (10000 / n).ToString());
-                tg.InnerXml += xml;
-            }
+            t.AppendChild(Word.GetTableProperties("#000000", BorderValues.Thick, "5000"));
             for (int i = 0; i < content.Length; i++)
             {
                 TableRow r = new TableRow();
-                for (int j = 0; j < n; j++)
+                for (int j = 0; j < content[i].Length; j++)
                 {
                     xml = File.ReadAllText(@".\Templates\Cell.txt").Replace("{{cellText}}", content[i][j]).Replace("{{cellWidth}}", (10000 / n).ToString());
                     r.InnerXml += xml;
@@ -72,6 +63,13 @@ namespace OpenXmlUtilities {
                 t.AppendChild(r);
             }
             return t;
+        }
+
+        public static Paragraph CreateParagraph(string text)
+        {
+            Paragraph p= new Paragraph(new Justification() { Val = JustificationValues.Left });
+            p.InnerXml += File.ReadAllText(@".\Templates\Paragraph.txt").Replace("{{content}}", text);
+            return p;
         }
 
         public static void InsertPicture(TableCell cell, string fileName)

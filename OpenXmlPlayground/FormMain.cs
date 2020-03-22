@@ -231,7 +231,8 @@ namespace OpenXmlPlayground {
         {
             try
             {
-                MainDocumentPart mainPart = Word.CreateWordFile("Prova", Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Prova.docx");
+
+                WordprocessingDocument doc = Word.CreateWordFile("Prova", Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Prova.docx");
                 string[][] c = new string[4][];
                 for (int i = 0; i < c.Length; i++)
                 {
@@ -241,10 +242,11 @@ namespace OpenXmlPlayground {
                         c[i][j] = i + "-" + j;
                     }
                 }
-                //NON AGGIUNGE LA TABELLA
-                mainPart.Document.GetFirstChild<Body>().AppendChild(Word.CreateTable(c));
-                MessageBox.Show(mainPart.Document.InnerXml);
+                doc.MainDocumentPart.Document.GetFirstChild<Body>().AppendChild(Word.CreateTable(c));
+                doc.MainDocumentPart.Document.GetFirstChild<Body>().AppendChild(Word.CreateParagraph("È universalmente riconosciuto che un lettore che osserva il layout di una pagina viene distratto dal contenuto testuale se questo è leggibile. Lo scopo dell’utilizzo del Lorem Ipsum è che offre una normale distribuzione delle lettere (al contrario di quanto avviene se si utilizzano brevi frasi ripetute, ad esempio “testo qui”), apparendo come un normale blocco di testo leggibile. Molti software di impaginazione e di web design utilizzano Lorem Ipsum come testo modello. Molte versioni del testo sono state prodotte negli anni, a volte casualmente, a volte di proposito (ad esempio inserendo passaggi ironici)."));
+
                 MessageBox.Show("Il documento è pronto!");
+                doc.Dispose();
                 Process.Start(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Prova.docx"));
             }
             catch (Exception ex)

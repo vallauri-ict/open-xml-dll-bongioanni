@@ -1,0 +1,1 @@
+﻿<w:pPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:jc w:val="left"/><w:rPr><w:rFonts w:ascii="Verdana" w:hAnsi="Verdana"/><w:color w:val="1F4E79" w:themeColor="accent1" w:themeShade="80"/><w:sz w:val="72"/></w:rPr></w:pPr><w:proofErr w:type="spellStart"/><w:r><w:t xml:space="preserve">{{content}}</w:t></w:r>
