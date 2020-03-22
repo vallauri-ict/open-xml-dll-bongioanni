@@ -14,7 +14,7 @@ using OpenXmlUtilities;
 using Color = DocumentFormat.OpenXml.Wordprocessing.Color;
 ```
 
-## Word.cs
+# Word.cs
 Permette di creare un testo formattato e con stili personalizzati, inserire immagini nel documento, creare tabelle e elenchi puntati tramite metodi statici tra cui:
 ```c#
 public static void InsertPicture(WordprocessingDocument wordprocessingDocument, string fileName);
@@ -24,13 +24,14 @@ public static Table CreateTable(string[][] contenuto, TableProperties tablePrope
 ```
 Questa classe è più macchinosa e per creare un documento bisogna leggere bene i parametri dei metodi e ci potrebbe essere l'eventualità di dover ritoccare alcuni metodi per adattarla alla soluzione.
 
-Sono stati aggiunti di recente 2 metodi:
-- CreateWordFile: ritorna MainPart di un file word e gli viene aggiunta un' intestazione
-- CreateTable: crea un semplice tabella
-Questi metodi servono a semplificare la creazione di semplici documenti. 
+Sono stati aggiunti di recente i seguenti metodi:
+- **CreateWordFile**: ritorna MainPart di un file word e gli viene aggiunta un' intestazione
+- **CreateTable**: crea un semplice tabella
+- **CreateParagraph**: crea un semplice paragrafo con allineamento a sinistra
 
+Questi metodi servono a semplificare e velocizzare la creazione di semplici documenti. 
 
-## Excel.cs
+# Excel.cs
 Permette la facile creazione di uno spreadsheet tramite un solo metodo:
 ```c#
 public static void CreateExcelFile<T>(List<T> data,string path)
